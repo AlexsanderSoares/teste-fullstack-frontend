@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import {FaSearch} from 'react-icons/fa';
 import './App.css';
+import {Link, useLocation} from 'react-router-dom';
 
-function App() {
+
+function App(props) {
+
+  const location = useLocation();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className='menu'>
+            <Link to="/" className={`button ${location.pathname === '/' ? "current_page" : ""}`}>
+              <FaSearch size={15}/> 
+              <span>/estados</span>
+            </Link>
+            <Link to="/populacao/sp" className={`button ${location.pathname === '/populacao/sp' ? "current_page" : ""}`}>
+              <FaSearch size={15}/> 
+              <span>/populacao/sp</span>
+            </Link>
+            <Link to="/v2/estados" className={`button ${location.pathname === '/v2/estados' ? "current_page" : ""}`}>
+              <FaSearch size={15}/> 
+              <span>/v2/estados</span>
+            </Link>
+        </div>
+        <div className='container'>
+          <header className='header'>
+              
+          </header>
+          <main className='main'>
+              {props.children}
+          </main>
+          <footer className='footer'>
+              
+          </footer>
+        </div>
     </div>
   );
 }
